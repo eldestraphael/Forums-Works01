@@ -1,0 +1,69 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/AktivGrotesk-Black.ttf",
+      "sha1": "6d1e5f3504a7470a0290c668d704ea0922d9c98a"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-BlackItalic.ttf",
+      "sha1": "aa2c06ee1e6babfc2c6c0b375711de355b409c27"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-Bold.ttf",
+      "sha1": "6aa5466f1d17911a5d1eed94861346eff54b6564"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-BoldItalic.ttf",
+      "sha1": "31d2b4b8f3cf23df22ae71e8b5f145a5a40d2cfb"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-Hairline.ttf",
+      "sha1": "e0c923bbe68db65900c2d7c912d313402886ee7e"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-HairlineItalic.ttf",
+      "sha1": "6a4930c6ac689148193f7acc2056d91632118e4e"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-Italic.ttf",
+      "sha1": "2a9af2610ccacc8ff925d9df395b03abe23ceacd"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-Light.ttf",
+      "sha1": "1229c7f4060a613f573941d17f7f3d63d3bb3750"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-LightItalic.ttf",
+      "sha1": "5b9a1fce71fc0e1dd3e7c169e0074948ef654973"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-Medium.ttf",
+      "sha1": "58937e711a76625554edf3c8d11dfc0c4b14234a"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-MediumItalic.ttf",
+      "sha1": "2b80e5341ec678eb82219a4579a7989226d10ed1"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-Regular.ttf",
+      "sha1": "fabf7464cc35470cf93c3168493a5a746b5ce7c0"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-Thin.ttf",
+      "sha1": "c63ab8cf03e1f6e28647044f6b1650a22c42590b"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-ThinItalic.ttf",
+      "sha1": "ccc67bc606374c5b4ca1e5a9ffd3ef81ee191e84"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-XBold.ttf",
+      "sha1": "1982b05d1442060d78ea813187fcb3f462e820f2"
+    },
+    {
+      "path": "assets/fonts/AktivGrotesk-XBoldItalic.ttf",
+      "sha1": "a50e535843801bbd7285f29d25b4edf982081640"
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "PDFs": [
+    {
+      "url": "https://faw-development.s3.ap-south-1.amazonaws.com/forum/uploads/pdf/seeding/DEV+TAA+Checklist+for+a+successful+Launch.pdf"
+    },
+    {
+      "url": "https://faw-development.s3.ap-south-1.amazonaws.com/forum/uploads/pdf/seeding/DEV+TAA+Checklist+for+a+successful+Launch.pdf"
+    }
+  ],
+  "Videos": [
+    {
+      "url": "https://stream.mux.com/lQEVDICdjkmB4bhoUJ902i01Ndt9NShqqHVd01P7v6NoJo.m3u8"
+    },
+    {
+      "url": "https://stream.mux.com/AS5TmsHGQ1kQP66gGOn1hsjpCF00wkPGJnaxlvzZJEMw.m3u8"
+    }
+  ],
+  "Audios": [
+    {
+      "url": "https://stream.mux.com/9eOSfI4omKP00i01BnvoZoLrOACBvadSsA02Dt02zYNllwc.m3u8"
+    }
+  ],
+  "Images": [
+    {
+      "url": "https://faw-development.s3.ap-south-1.amazonaws.com/forum/uploads/image/seeding/code.png"
+    },
+    {
+      "url": "https://faw-development.s3.ap-south-1.amazonaws.com/forum/uploads/image/seeding/Developer+slider.png"
+    },
+    {
+      "url": "https://stream.mux.com/isplm9cgsg1axeIldW00LdxqXwUX2K1Jp1oaKfwTHir4.m3u8"
+    }
+  ],
+  "Surveys": [
+    {
+      "name": "survey_1",
+      "title": "Survey 1",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "question_1",
+          "title": "I know what is expected of me at work",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_2",
+          "title": "I have the materials and equipment I need to do my work right.",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_3",
+          "title": "At work, I have the opportunity to do what I do best every day.",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_4",
+          "title": "In the last seven days, I have received recognition or praise for doing good work",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_5",
+          "title": "My supervisor, or someone at work, seems to care about me as a person",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_6",
+          "title": "There is someone at work who encourages my development.",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "survey_2",
+      "title": "Survey 2",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "question_1",
+          "title": "At work, my opinions seem to count.",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_2",
+          "title": "The mission or purpose of my organization makes me feel my job is important.",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_3",
+          "title": "My associates or fellow employees are committed to doing quality work.",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_4",
+          "title": "I have a best friend at work. ",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_5",
+          "title": "In the last six months, someone at work has talked to me about my progress.",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "question_6",
+          "title": "This last year, I have had opportunities at work to learn and grow.",
+          "maxLength": 1000,
+          "isRequired": true,
+          "choices": [
+            "1 (Strongly Disagree)",
+            "2",
+            "3",
+            "4",
+            "5 (Strongly Agree)"
+          ]
+        }
+      ]
+    }
+  ]
+}

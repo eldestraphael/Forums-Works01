@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Forums@Work</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>We use this to check you into a forum meeting</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>We use this to check you into a forum meeting</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Need Camera access</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We use your location to check you into a forum meeting</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We use your microphone to help you participate during an online forum meeting</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AktivGrotesk-Black.ttf</string>
+		<string>AktivGrotesk-BlackItalic.ttf</string>
+		<string>AktivGrotesk-Bold.ttf</string>
+		<string>AktivGrotesk-BoldItalic.ttf</string>
+		<string>AktivGrotesk-Hairline.ttf</string>
+		<string>AktivGrotesk-HairlineItalic.ttf</string>
+		<string>AktivGrotesk-Italic.ttf</string>
+		<string>AktivGrotesk-Light.ttf</string>
+		<string>AktivGrotesk-LightItalic.ttf</string>
+		<string>AktivGrotesk-Medium.ttf</string>
+		<string>AktivGrotesk-MediumItalic.ttf</string>
+		<string>AktivGrotesk-Regular.ttf</string>
+		<string>AktivGrotesk-Thin.ttf</string>
+		<string>AktivGrotesk-ThinItalic.ttf</string>
+		<string>AktivGrotesk-XBold.ttf</string>
+		<string>AktivGrotesk-XBoldItalic.ttf</string>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

@@ -1,0 +1,604 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AssetType {
+  pdf
+  video
+  text
+  audio
+  image
+  forum_prep
+  survey
+}
+
+enum meetingType {
+  zoom
+  bluetooth
+}
+
+enum ProviderType {
+  microsoft
+  google
+  zoom
+}
+
+enum SectionType {
+  header
+  body
+  footer
+}
+
+enum Type {
+  logical
+  repeatable
+  once
+}
+
+model Company {
+  id                   Int                    @id @default(autoincrement())
+  uuid                 String                 @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  company_name         String
+  is_active            Boolean                @default(true)
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @default(now()) @updatedAt
+  User                 User[]
+  forum                Forum[]
+  oauth_provider_token oauth_provider_token[]
+}
+
+model User {
+  id                            Int                             @id @default(autoincrement())
+  uuid                          String                          @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  first_name                    String
+  last_name                     String?
+  email                         String                          @unique
+  password                      String?
+  company_id                    Int
+  faw_thinkific_user_meta_id    Int?
+  thinkfic_user_id              Int?
+  role_uuid                     String?
+  phone                         String?
+  job_title                     String?
+  is_active                     Boolean                         @default(true)
+  createdAt                     DateTime                        @default(now())
+  updatedAt                     DateTime                        @default(now()) @updatedAt
+  userResetPasswordOtps         userResetPasswordOtps[]
+  company                       Company                         @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  user_forum                    user_forum[]
+  user_forum_healths            user_forum_healths[]
+  user_per_forum_health_score   user_per_forum_health_score[]
+  faw_thinkific_user_meta       faw_thinkific_user_meta?        @relation(fields: [faw_thinkific_user_meta_id], references: [id], onDelete: Cascade)
+  roles                         roles?                          @relation(fields: [role_uuid], references: [uuid], onDelete: SetNull)
+  user_forum_prework_status     user_forum_prework_status[]
+  user_forum_action_step_status user_forum_action_step_status[]
+  user_forum_meeting_status     user_forum_meeting_status[]
+  forum_meetings                forum_meetings[]
+  user_forum_prep_status        user_forum_prep_status[]
+  user_fcm_tokens               user_fcm_tokens[]
+  user_survey_status            user_survey_status[]
+}
+
+model userResetPasswordOtps {
+  id        Int      @id @default(autoincrement())
+  uuid      String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id   Int
+  otp       Int
+  expiresAt DateTime
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Forum {
+  id                            Int                             @id @default(autoincrement())
+  uuid                          String                          @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  company_id                    Int
+  forum_name                    String
+  meeting_day                   String?
+  meeting_time                  String?
+  is_active                     Boolean                         @default(true)
+  createdAt                     DateTime                        @default(now())
+  updatedAt                     DateTime                        @default(now()) @updatedAt
+  user_forum                    user_forum[]
+  company                       Company                         @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  user_forum_healths            user_forum_healths[]
+  user_per_forum_health_score   user_per_forum_health_score[]
+  forum_course                  forum_course[]
+  user_forum_action_step_status user_forum_action_step_status[]
+  forum_meetings                forum_meetings[]
+
+  @@index([meeting_time], name: "idx_forum_meeting_time")
+}
+
+model user_forum {
+  id        Int      @id @default(autoincrement())
+  uuid      String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id   Int
+  forum_id  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  forum     Forum    @relation(fields: [forum_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id, forum_id], name: "idx_user_forum")
+}
+
+model forum_health_mcqs {
+  id                 Int                  @id @default(autoincrement())
+  uuid               String               @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  mcq_title          String               @db.VarChar(255)
+  mcq_description    String?              @db.VarChar(255)
+  keyword            String?              @db.VarChar(50)
+  is_active          Boolean              @default(true)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @default(now()) @updatedAt
+  health_mcq_options health_mcq_options[]
+}
+
+model health_mcq_options {
+  id                     Int      @id @default(autoincrement())
+  uuid                   String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  forum_health_mcq_id    Int
+  mcq_option             String   @db.VarChar(255)
+  mcq_option_description String?  @db.VarChar(255)
+  mcq_option_value       Decimal  @db.Decimal(9, 6)
+  is_active              Boolean  @default(true)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @default(now()) @updatedAt
+
+  forum_health_mcq   forum_health_mcqs    @relation(fields: [forum_health_mcq_id], references: [id], onDelete: Cascade)
+  user_forum_healths user_forum_healths[]
+}
+
+model user_forum_healths {
+  id                   Int                @id @default(autoincrement())
+  uuid                 String             @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id              Int
+  forum_id             Int
+  date                 DateTime
+  score                Decimal            @db.Decimal(9, 6)
+  health_mcq_option_id Int
+  is_active            Boolean            @default(true)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @default(now()) @updatedAt
+  user                 User               @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  forum                Forum              @relation(fields: [forum_id], references: [id], onDelete: Cascade)
+  health_mcq_options   health_mcq_options @relation(fields: [health_mcq_option_id], references: [id], onDelete: Cascade)
+}
+
+model user_per_forum_health_score {
+  id        Int      @id @default(autoincrement())
+  uuid      String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id   Int
+  forum_id  Int
+  date      DateTime
+  score     Decimal  @db.Decimal(9, 6)
+  is_active Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  forum     Forum    @relation(fields: [forum_id], references: [id], onDelete: Cascade)
+}
+
+model faw_thinkific_courses {
+  id                           Int      @id @default(autoincrement())
+  uuid                         String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  faw_thinkific_course_meta_id Int
+  name                         String   @db.VarChar(255)
+  slug                         String   @db.VarChar(255)
+  product_id                   Int
+  description                  String?  @db.VarChar(2500)
+  thinkific_user_id            Int?
+  instructor_id                Int
+  createdAt                    DateTime @default(now())
+  updatedAt                    DateTime @default(now()) @updatedAt
+}
+
+model faw_thinkific_course_meta {
+  id                    Int      @id @default(autoincrement())
+  uuid                  String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  migrated_count        Int?
+  thinkific_total_items Int?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @default(now()) @updatedAt
+}
+
+model faw_thinkific_user_meta {
+  id                    Int      @id @default(autoincrement())
+  uuid                  String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  migrated_count        Int?     @db.SmallInt
+  thinkific_total_items Int?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @default(now()) @updatedAt
+  User                  User[]
+}
+
+model roles {
+  uuid            String            @id @default(uuid())
+  name            String            @db.VarChar(255)
+  description     String?           @db.VarChar(2500)
+  is_active       Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  hierarchy       Int               @db.SmallInt
+  role_privileges role_privileges[]
+  User            User[]
+}
+
+model scopes {
+  uuid            String            @id @default(uuid())
+  name            String            @db.VarChar(255)
+  keyword         String            @db.VarChar(255)
+  description     String?           @db.VarChar(2500)
+  is_active       Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  role_privileges role_privileges[]
+}
+
+model modules {
+  uuid            String            @id @default(uuid())
+  name            String            @db.VarChar(255)
+  keyword         String            @db.VarChar(50)
+  description     String?           @db.VarChar(2500)
+  order           Decimal           @db.Decimal(9, 2)
+  is_active       Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  role_privileges role_privileges[]
+  sub_modules     sub_modules[]
+}
+
+model sub_modules {
+  uuid            String            @id @default(uuid())
+  module_uuid     String
+  name            String            @db.VarChar(255)
+  keyword         String            @db.VarChar(50)
+  description     String?           @db.VarChar(2500)
+  redirect_url    String            @db.VarChar(50)
+  order           Decimal           @db.Decimal(9, 2)
+  is_active       Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  modules         modules           @relation(fields: [module_uuid], references: [uuid], onDelete: Cascade)
+  role_privileges role_privileges[]
+}
+
+model actions {
+  uuid            String            @id @default(uuid())
+  name            String            @db.VarChar(255)
+  keyword         String            @db.VarChar(50)
+  description     String?           @db.VarChar(2500)
+  is_active       Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  role_privileges role_privileges[]
+}
+
+model role_privileges {
+  uuid            String      @id @default(uuid())
+  role_uuid       String
+  scope_uuid      String
+  module_uuid     String
+  sub_module_uuid String
+  action_uuid     String
+  is_active       Boolean     @default(true)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now()) @updatedAt
+  roles           roles       @relation(fields: [role_uuid], references: [uuid], onDelete: Cascade)
+  scopes          scopes      @relation(fields: [scope_uuid], references: [uuid], onDelete: Cascade)
+  modules         modules     @relation(fields: [module_uuid], references: [uuid], onDelete: Cascade)
+  sub_modules     sub_modules @relation(fields: [sub_module_uuid], references: [uuid], onDelete: Cascade)
+  actions         actions     @relation(fields: [action_uuid], references: [uuid], onDelete: Cascade)
+}
+
+model oauth_provider_token {
+  id            Int          @id @default(autoincrement())
+  uuid          String       @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  company_id    Int
+  token         String
+  expiry        DateTime
+  oauth_details Json?
+  type          ProviderType @default(microsoft)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @default(now()) @updatedAt
+  company       Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
+}
+
+model courses {
+  id           Int            @id @default(autoincrement())
+  uuid         String         @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String         @db.VarChar(255)
+  description  String?        @db.VarChar(2500)
+  is_active    Boolean        @default(true)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @default(now()) @updatedAt
+  chapters     chapters[]
+  forum_course forum_course[]
+}
+
+model chapters {
+  id                        Int                         @id @default(autoincrement())
+  course_id                 Int
+  uuid                      String                      @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                      String                      @db.VarChar(255)
+  description               String?                     @db.VarChar(2500)
+  order                     Int?
+  is_active                 Boolean                     @default(false)
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @default(now()) @updatedAt
+  courses                   courses                     @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  lessons                   lessons[]
+  forum_course              forum_course[]
+  user_forum_prework_status user_forum_prework_status[]
+  action_steps              action_steps[]
+  chapter_moderator_guide   chapter_moderator_guide[]
+
+  @@index([course_id, order], name: "idx_chapters")
+}
+
+model lessons {
+  id                        Int                         @id @default(autoincrement())
+  uuid                      String                      @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  chapter_id                Int
+  order                     Int?
+  name                      String                      @db.VarChar(255)
+  pdf_id                    Int?
+  video_id                  Int?
+  audio_id                  Int?
+  image_id                  Int?
+  forum_prep_id             Int?
+  survey_id                 Int?
+  asset_type                AssetType
+  is_preview                Boolean                     @default(false)
+  is_prerequisite           Boolean                     @default(false)
+  is_discussion_enabled     Boolean                     @default(false)
+  is_downloadable           Boolean                     @default(false)
+  is_active                 Boolean                     @default(false)
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @default(now()) @updatedAt
+  pdfs                      pdfs?                       @relation(fields: [pdf_id], references: [id], onDelete: Cascade)
+  chapters                  chapters                    @relation(fields: [chapter_id], references: [id], onDelete: Cascade)
+  videos                    videos?                     @relation(fields: [video_id], references: [id], onDelete: Cascade)
+  audios                    audios?                     @relation(fields: [audio_id], references: [id], onDelete: Cascade)
+  images                    images?                     @relation(fields: [image_id], references: [id], onDelete: Cascade)
+  forum_preps               forum_preps?                @relation(fields: [forum_prep_id], references: [id], onDelete: Cascade)
+  user_forum_prework_status user_forum_prework_status[]
+  surveys                   surveys?                    @relation(fields: [survey_id], references: [id])
+
+  @@index([chapter_id], name: "idx_lessons")
+}
+
+model pdfs {
+  id                 Int       @id @default(autoincrement())
+  uuid               String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name               String    @db.VarChar(255)
+  url                String    @db.VarChar(500)
+  asset_content_size Int?
+  is_active          Boolean   @default(true)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @default(now()) @updatedAt
+  lessons            lessons[]
+}
+
+model videos {
+  id                 Int       @id @default(autoincrement())
+  uuid               String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name               String    @db.VarChar(255)
+  url                String    @db.VarChar(500)
+  asset_content_size Int?
+  is_active          Boolean   @default(true)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @default(now()) @updatedAt
+  lessons            lessons[]
+}
+
+model audios {
+  id                 Int       @id @default(autoincrement())
+  uuid               String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name               String    @db.VarChar(255)
+  url                String    @db.VarChar(500)
+  asset_content_size Int?
+  is_active          Boolean   @default(true)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @default(now()) @updatedAt
+  lessons            lessons[]
+}
+
+model images {
+  id                 Int       @id @default(autoincrement())
+  uuid               String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name               String    @db.VarChar(255)
+  url                String    @db.VarChar(500)
+  asset_content_size Int?
+  is_active          Boolean   @default(true)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @default(now()) @updatedAt
+  lessons            lessons[]
+}
+
+model forum_course {
+  id                        Int                         @id @default(autoincrement())
+  uuid                      String                      @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  forum_id                  Int
+  course_id                 Int
+  chapter_id                Int?
+  starting_date             DateTime?
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @default(now()) @updatedAt
+  is_current_course         Boolean                     @default(true)
+  forum                     Forum                       @relation(fields: [forum_id], references: [id], onDelete: Cascade)
+  courses                   courses                     @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  chapters                  chapters?                   @relation(fields: [chapter_id], references: [id], onDelete: Cascade)
+  user_forum_prework_status user_forum_prework_status[]
+}
+
+model user_forum_prework_status {
+  id                     Int                      @id @default(autoincrement())
+  uuid                   String                   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  forum_course_id        Int
+  user_id                Int
+  chapter_id             Int
+  lesson_id              Int
+  status                 Int
+  status_percent         Int
+  is_current_lesson      Boolean                  @default(false)
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @default(now()) @updatedAt
+  forum_course           forum_course?            @relation(fields: [forum_course_id], references: [id], onDelete: Cascade)
+  user                   User                     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  chapters               chapters?                @relation(fields: [chapter_id], references: [id], onDelete: Cascade)
+  lessons                lessons?                 @relation(fields: [lesson_id], references: [id], onDelete: Cascade)
+  user_forum_prep_status user_forum_prep_status[]
+
+  @@index([user_id, chapter_id, forum_course_id, lesson_id, status_percent], name: "idx_user_forum_prework_status")
+}
+
+model action_steps {
+  id                            Int                             @id @default(autoincrement())
+  uuid                          String                          @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  chapter_id                    Int
+  name                          String                          @db.VarChar(255)
+  description                   String?                         @db.VarChar(2500)
+  times_per_year                Int
+  is_active                     Boolean                         @default(false)
+  createdAt                     DateTime                        @default(now())
+  updatedAt                     DateTime                        @default(now()) @updatedAt
+  chapters                      chapters                        @relation(fields: [chapter_id], references: [id], onDelete: Cascade)
+  user_forum_action_step_status user_forum_action_step_status[]
+
+  @@index([chapter_id], name: "idx_action_steps")
+}
+
+model user_forum_action_step_status {
+  id             Int          @id @default(autoincrement())
+  uuid           String       @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id        Int
+  forum_id       Int
+  action_step_id Int
+  message        String       @db.VarChar(2500)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @default(now()) @updatedAt
+  user           User         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  forum          Forum        @relation(fields: [forum_id], references: [id], onDelete: Cascade)
+  action_steps   action_steps @relation(fields: [action_step_id], references: [id], onDelete: Cascade)
+}
+
+model forum_meetings {
+  id                        Int                         @id @default(autoincrement())
+  uuid                      String                      @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  forum_id                  Int
+  meeting_started_by        Int
+  meeting_started_at        DateTime                    @default(now())
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @default(now()) @updatedAt
+  forum                     Forum                       @relation(fields: [forum_id], references: [id], onDelete: Cascade)
+  user                      User                        @relation(fields: [meeting_started_by], references: [id], onDelete: Cascade)
+  user_forum_meeting_status user_forum_meeting_status[]
+}
+
+model user_forum_meeting_status {
+  id               Int            @id @default(autoincrement())
+  uuid             String         @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id          Int
+  forum_meeting_id Int
+  device_id        String?        @db.VarChar(50)
+  status           Boolean?
+  meeting_type     meetingType    @default(zoom)
+  checkin_time     DateTime       @default(now())
+  checkout_time    DateTime?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @default(now()) @updatedAt
+  user             User           @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  forum_meetings   forum_meetings @relation(fields: [forum_meeting_id], references: [id], onDelete: Cascade)
+
+  @@index([checkin_time], name: "idx_user_forum_meeting_status_checkin_time")
+}
+
+model chapter_moderator_guide {
+  id                  Int         @id @default(autoincrement())
+  uuid                String      @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  chapter_id          Int
+  section_type        SectionType
+  type                Type
+  title               String?     @db.VarChar(250)
+  description         String?     @db.VarChar(2500)
+  order               Float
+  duration            Int?
+  duration_per_person Int?
+  link                String?     @db.VarChar(250)
+  is_active           Boolean     @default(false)
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @default(now()) @updatedAt
+  chapters            chapters?   @relation(fields: [chapter_id], references: [id], onDelete: Cascade)
+}
+
+model forum_preps {
+  id                     Int                      @id @default(autoincrement())
+  uuid                   String                   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  forum_prep_data        Json
+  is_active              Boolean                  @default(false)
+  asset_content_size     Int?
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @default(now()) @updatedAt
+  user_forum_prep_status user_forum_prep_status[]
+  lessons                lessons[]
+}
+
+model user_forum_prep_status {
+  id                           Int                       @id @default(autoincrement())
+  uuid                         String                    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                      Int
+  forum_prep_id                Int
+  user_forum_prework_status_id Int
+  forum_prep_answers           Json //this will include quiz_uuid, correct and user selected answers
+  score                        Int
+  createdAt                    DateTime                  @default(now())
+  updatedAt                    DateTime                  @default(now()) @updatedAt
+  forum_preps                  forum_preps               @relation(fields: [forum_prep_id], references: [id], onDelete: Cascade)
+  user                         User                      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_forum_prework_status    user_forum_prework_status @relation(fields: [user_forum_prework_status_id], references: [id], onDelete: Cascade)
+}
+
+model user_fcm_tokens {
+  id          Int      @id @default(autoincrement())
+  user_id     Int
+  fcm_token   String   @db.VarChar(255)
+  device_id   String   @unique @db.VarChar(255)
+  device_meta Json? //this will include device make and model
+  is_active   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  user        User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model surveys {
+  id                 Int                  @id @default(autoincrement())
+  uuid               String               @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  survey_data        Json
+  is_active          Boolean              @default(false)
+  asset_content_size Int?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @default(now()) @updatedAt
+  lessons            lessons[]
+  user_survey_status user_survey_status[]
+}
+
+model user_survey_status {
+  id             Int      @id @default(autoincrement())
+  uuid           String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id        Int
+  survey_id      Int
+  survey_answers Json
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt
+  user           User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  surveys        surveys  @relation(fields: [survey_id], references: [id], onDelete: Cascade)
+}

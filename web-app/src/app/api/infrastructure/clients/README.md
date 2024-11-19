@@ -1,0 +1,1 @@
+If you are trying to connect with any external application. The connection should be maintained inside this folder.

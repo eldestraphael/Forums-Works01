@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "569198958448",
+    "project_id": "dev-faw-platform",
+    "storage_bucket": "dev-faw-platform.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569198958448:android:c0ad6520575e168d4621b5",
+        "android_client_info": {
+          "package_name": "com.example.poc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569198958448-ttc37dpqhu86ara4ndknqfrvakv70rn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp15QM2rICuHzlqapNPAR9GbVh-aPPulU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569198958448-ttc37dpqhu86ara4ndknqfrvakv70rn9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "569198958448-h7s3flbvlo639v7qs1722ek6jek4jrk0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.poc"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569198958448:android:89cfaf97e4cedeaa4621b5",
+        "android_client_info": {
+          "package_name": "com.forums"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569198958448-ttc37dpqhu86ara4ndknqfrvakv70rn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp15QM2rICuHzlqapNPAR9GbVh-aPPulU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569198958448-ttc37dpqhu86ara4ndknqfrvakv70rn9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "569198958448-h7s3flbvlo639v7qs1722ek6jek4jrk0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.poc"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569198958448:android:45854053609b2ee24621b5",
+        "android_client_info": {
+          "package_name": "com.forumsatwork.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569198958448-ttc37dpqhu86ara4ndknqfrvakv70rn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp15QM2rICuHzlqapNPAR9GbVh-aPPulU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569198958448-ttc37dpqhu86ara4ndknqfrvakv70rn9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "569198958448-h7s3flbvlo639v7qs1722ek6jek4jrk0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.poc"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

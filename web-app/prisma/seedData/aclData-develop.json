@@ -1,0 +1,71 @@
+{
+  "modules": [
+    {
+      "Users": [
+        "all_users",
+        "view_user",
+        "view_user_dashboard",
+        "user_all_health_scores",
+        "add_user"
+      ]
+    },
+    {
+      "Forums": [
+        "all_forums",
+        "view_forum",
+        "view_forum_dashboard",
+        "forum_all_health_scores",
+        "mark_forum_health_check",
+        "add_forum",
+        "all_surveys",
+        "download_survey"
+      ]
+    },
+    {
+      "Companies": ["all_companies", "view_company", "add_company"]
+    },
+    { "Courses": ["all_courses", "view_course", "add_course"] }
+  ],
+  "sub_modules": {
+    "all_users": "All Users",
+    "view_user": "View a Specific User",
+    "view_user_dashboard": "Specific User Dashboard",
+    "user_all_health_scores": "View Health Score History",
+    "add_user": "Add User",
+    "all_forums": "All Forums",
+    "view_forum": "View a Specific Forum",
+    "view_forum_dashboard": "Specific Forums Dashboard",
+    "forum_all_health_scores": "View Health Score History",
+    "mark_forum_health_check": "Add Health Check",
+    "add_forum": "Add Forums",
+    "all_companies": "All Companies",
+    "view_company": "View a Specific Company",
+    "add_company": "Add Company",
+    "all_courses": "All Courses",
+    "view_course": "View a Specific Course",
+    "add_course": "Add Course",
+    "all_surveys": "All Surveys",
+    "download_survey": "Download Survey"
+  },
+  "redirect_urls": [
+    { "all_users": "/users" },
+    { "view_user": "/user/{user_uuid}" },
+    { "view_user_dashboard": "/user/{user_uuid}/dashboard" },
+    { "user_all_health_scores": "/user/{user_uuid}/health-scores" },
+    { "add_user": "/users/add" },
+    { "all_forums": "/forums" },
+    { "view_forum": "/forums/{forum_uuid}" },
+    { "view_forum_dashboard": "/forums/{forum_uuid}/dashboard" },
+    { "forum_all_health_scores": "/forums/{forum_uuid}/health-scores" },
+    { "mark_forum_health_check": "/forums/{forum_uuid}/health-check" },
+    { "add_forum": "/forums/add" },
+    { "all_companies": "/companies" },
+    { "view_company": "/companies/{company_uuid}" },
+    { "add_company": "/companies/add" },
+    { "all_courses": "/courses" },
+    { "view_course": "/courses/{course_uuid}" },
+    { "add_course": "/courses/add" },
+    { "all_surveys": "/forum/{forum_uuid}/surveys" },
+    { "download_survey": "/forum/{forum_uuid}/survey/{survey_uuid}/download" }
+  ]
+}

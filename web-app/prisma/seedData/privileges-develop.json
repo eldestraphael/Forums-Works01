@@ -1,0 +1,99 @@
+{
+  "Super Admin": {
+    "scope": "Application",
+    "module": {
+      "Users": {
+        "all_users": ["Read", "Update"],
+        "view_user": ["Read", "Update"],
+        "view_user_dashboard": ["Read", "Update"],
+        "user_all_health_scores": ["Read", "Update"],
+        "add_user": ["Create", "Read"]
+      },
+      "Forums": {
+        "all_forums": ["Read", "Update"],
+        "view_forum": ["Read", "Update"],
+        "view_forum_dashboard": ["Read", "Update"],
+        "forum_all_health_scores": ["Read", "Update"],
+        "mark_forum_health_check": ["Read", "Update"],
+        "add_forum": ["Create", "Read"],
+        "all_surveys": ["Read"],
+        "download_survey": ["Read"]
+      },
+      "Companies": {
+        "all_companies": ["Read", "Update"],
+        "view_company": ["Read", "Update"],
+        "add_company": ["Create", "Read"]
+      },
+      "Courses": {
+        "all_courses": ["Read", "Update"],
+        "view_course": ["Read", "Update"],
+        "add_course": ["Create", "Read"]
+      }
+    }
+  },
+  "Client Admin": {
+    "scope": "Company",
+    "module": {
+      "Users": {
+        "all_users": ["Read", "Update"],
+        "view_user": ["Read", "Update"],
+        "view_user_dashboard": ["Read", "Update"],
+        "user_all_health_scores": ["Read", "Update"],
+        "add_user": ["Create", "Read"]
+      },
+      "Forums": {
+        "all_forums": ["Read", "Update"],
+        "view_forum": ["Read", "Update"],
+        "view_forum_dashboard": ["Read", "Update"],
+        "forum_all_health_scores": ["Read", "Update"],
+        "mark_forum_health_check": ["Read", "Update"],
+        "add_forum": ["Create", "Read"],
+        "all_surveys": ["Read"],
+        "download_survey": ["Read"]
+      },
+      "Companies": {
+        "all_companies": ["Read", "Update"],
+        "view_company": ["Read", "Update"]
+      },
+      "Courses": {
+        "all_courses": ["Read"],
+        "view_course": ["Read"]
+      }
+    }
+  },
+  "Client Forum Leader": {
+    "scope": "Forum",
+    "module": {
+      "Users": {
+        "all_users": ["Read"],
+        "view_user": ["Read"],
+        "view_user_dashboard": ["Read"],
+        "user_all_health_scores": ["Read"]
+      },
+      "Forums": {
+        "all_forums": ["Read"],
+        "view_forum": ["Read"],
+        "view_forum_dashboard": ["Read"],
+        "forum_all_health_scores": ["Read"],
+        "mark_forum_health_check": ["Read"]
+      }
+    }
+  },
+  "Client Forum Member": {
+    "scope": "User",
+    "module": {
+      "Users": {
+        "all_users": ["Read"],
+        "view_user": ["Read"],
+        "view_user_dashboard": ["Read"],
+        "user_all_health_scores": ["Read"]
+      },
+      "Forums": {
+        "all_forums": ["Read"],
+        "view_forum": ["Read"],
+        "view_forum_dashboard": ["Read"],
+        "forum_all_health_scores": ["Read"]
+      }
+    }
+  }
+}

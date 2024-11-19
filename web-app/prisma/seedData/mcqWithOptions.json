@@ -1,0 +1,98 @@
+[
+  {
+    "mcq_id": 1,
+    "mcq_title": "Attendance",
+    "mcq_description": "Was punctual and on time",
+    "keyword": "attendance",
+    "options": [
+      {
+        "mcq_option_id": 99910,
+        "mcq_option": "Very late or absent",
+        "mcq_option_value": 0,
+        "mcq_option_description": "Very late or absent"
+      },
+      {
+        "mcq_option_id": 99911,
+        "mcq_option": "Late upto 10 mins",
+        "mcq_option_value": 1,
+        "mcq_option_description": "Late upto 10 mins"
+      },
+      {
+        "mcq_option_id": 99912,
+        "mcq_option": "Late by 5 mins",
+        "mcq_option_value": 2,
+        "mcq_option_description": "Late by 5 mins"
+      },
+      {
+        "mcq_option_id": 99913,
+        "mcq_option": "Yes",
+        "mcq_option_value": 3,
+        "mcq_option_description": "Present on time"
+      }
+    ]
+  },
+  {
+    "mcq_id": 2,
+    "mcq_title": "Pre-work",
+    "mcq_description": "Done before the forum meeting",
+    "keyword": "pre_work",
+    "options": [
+      {
+        "mcq_option_id": 99920,
+        "mcq_option": "No",
+        "mcq_option_value": 0,
+        "mcq_option_description": "Did not completed all the prework before the forum meeting"
+      },
+      {
+        "mcq_option_id": 99922,
+        "mcq_option": "Yes",
+        "mcq_option_value": 2,
+        "mcq_option_description": "Completed all the prework before the forum meeting"
+      }
+    ]
+  },
+  {
+    "mcq_id": 3,
+    "mcq_title": "Action Step",
+    "mcq_description": "Did it on every week day",
+    "keyword": "action_steps",
+    "options": [
+      {
+        "mcq_option_id": 99930,
+        "mcq_option": "None",
+        "mcq_option_value": 0,
+        "mcq_option_description": "Did 0 out of 5 days"
+      },
+      {
+        "mcq_option_id": 99931,
+        "mcq_option": "Did 1 out of 5 days",
+        "mcq_option_value": 1,
+        "mcq_option_description": "Did 1 out of 5 days"
+      },
+      {
+        "mcq_option_id": 99932,
+        "mcq_option": "Did 2 out of 5 days",
+        "mcq_option_value": 2,
+        "mcq_option_description": "Did 2 out of 5 days"
+      },
+      {
+        "mcq_option_id": 99933,
+        "mcq_option": "Did 3 out of 5 days",
+        "mcq_option_value": 3,
+        "mcq_option_description": "Did 3 out of 5 days"
+      },
+      {
+        "mcq_option_id": 99934,
+        "mcq_option": "Did 4 out of 5 days",
+        "mcq_option_value": 4,
+        "mcq_option_description": "Did 4 out of 5 days"
+      },
+      {
+        "mcq_option_id": 99935,
+        "mcq_option": "Yes",
+        "mcq_option_value": 5,
+        "mcq_option_description": "Did 5 out of 5 days"
+      }
+    ]
+  }
+]
